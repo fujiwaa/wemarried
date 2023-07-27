@@ -97,4 +97,19 @@ class ClientController extends Controller
 
         return back()->with('success', 'Data berhasil dihapus!');
     }
+
+    public function search(Request $request)
+    {
+        $search = $request->input('search');
+
+        // Cari produk berdasarkan nama yang sesuai dengan keyword yang diberikan
+        $client = Client::where('nama', 'LIKE', '%' . $search . '%')->get();
+
+        if ($client->isEmpty()) {
+            return view('client.index', ['empty' => true]);
+        } else {
+            return view('client.index', compact('client'));
+        }
+
+    }
 }

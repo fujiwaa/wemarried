@@ -13,7 +13,7 @@
         <a href="{{ route('client.index') }}" class="btn btn-primary mb-3">Data Clienc</a>
         <div class="card">
             <div class="card-body">
-              <form action="{{ route('client.update', $Client->id) }}" method="POST">
+              <form action="{{ route('client.update', $client->id) }}" method="POST">
                 @csrf
                 @method('patch')
                 <div class="mb-3 row">

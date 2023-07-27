@@ -97,4 +97,19 @@ class CustomerController extends Controller
 
         return back()->with('success', 'Data berhasil dihapus!');
     }
+
+    public function search(Request $request)
+    {
+        $search = $request->input('search');
+
+        // Cari produk berdasarkan nama yang sesuai dengan keyword yang diberikan
+        $customer = Customer::where('nama', 'LIKE', '%' . $search . '%')->get();
+
+        if ($customer->isEmpty()) {
+            return view('customer.index', ['empty' => true]);
+        } else {
+            return view('customer.index', compact('customer'));
+        }
+
+    }
 }

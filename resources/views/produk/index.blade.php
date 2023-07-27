@@ -1,16 +1,21 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Data Produk</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-  </head>
-  <body>
+@extends('layouts.app')
 
+@section('title', 'Data Customer')
+
+@section('contents')
     <div class="container mt-5">
         <h1 class="text-center mb-5">Data Produk</h1>
-        <a href="{{ route('produk.create') }}" class="btn btn-primary mb-3">Tambah Data</a>
+        <div class="d-flex justify-content-between">
+            <a href="{{ route('produk.create') }}" class="btn btn-primary mb-3">Tambah Data</a>
+            <form action="{{ route('produk.search') }}" class="form-inline" method="GET">
+                <input type="search" class="form-control mb-3"name="search" placeholder="Input kategori">
+                <div class="input-group-append mb-3">
+                    <button type="submit" class="btn btn-default">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
         @if (session('success'))
             <div class="alert alert-success" role="alert">
                 {{ session('success') }}
@@ -26,6 +31,7 @@
                         <th>Deskripsi</th>
                         <th>Harga</th>
                         <th>Foto Produk</th>
+                        <th>Aksi</th>
                     </thead>
                     <tbody>
                             @forelse ($produk as $pr => $hasil)
@@ -55,7 +61,4 @@
             </div>
         </div>
     </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
-  </body>
-</html>
+@endsection

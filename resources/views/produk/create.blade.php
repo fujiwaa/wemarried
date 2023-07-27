@@ -43,6 +43,13 @@
                   </div>
                 </div>
 
+                <div class="mb-3 row">
+                  <label for="fotoproduk" class="col-sm-2 col-form-label">Foto Produk</label>
+                  <div class="col-sm-10">
+                    <input type="file" class="form-control" id="fotoproduk" name="fotoproduk">
+                  </div>
+                </div>
+
                 <button type="submit" class="btn btn-primary float-end">Simpan</button>
               </form>
             </div>

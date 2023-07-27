@@ -1,22 +1,27 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Data Customer</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-  </head>
-  <body>
+@extends('layouts.app')
 
+@section('title', 'Data Customer')
+
+@section('contents')
     <div class="container mt-5">
         <h1 class="text-center mb-5">Data Customer</h1>
-        <a href="{{ route('customer.create') }}" class="btn btn-primary mb-3">Tambah Data</a>
+        <div class="d-flex justify-content-between">
+            <a href="{{ route('customer.create') }}" class="btn btn-primary mb-3">Tambah Data</a>
+            <form action="{{ route('customer.search') }}" class="form-inline" method="GET">
+                <input type="search" class="form-control mb-3"name="search" placeholder="Input Nama">
+                <div class="input-group-append mb-3">
+                    <button type="submit" class="btn btn-default">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
         @if (session('success'))
             <div class="alert alert-success" role="alert">
                 {{ session('success') }}
             </div>
         @endif
-        <div class="card">
+        <div class="card mb-5">
             <div class="card-body">
                 <table class="table">
                     <thead>
@@ -25,6 +30,7 @@
                         <th>Email</th>
                         <th>Password</th>
                         <th>No. HP</th>
+                        <th>Aksi</th>
                     </thead>
                     <tbody>
                             @forelse ($customer as $cust => $hasil)
@@ -53,7 +59,4 @@
             </div>
         </div>
     </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
-  </body>
-</html>
+@endsection
